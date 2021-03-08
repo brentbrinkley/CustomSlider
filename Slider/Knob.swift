@@ -20,16 +20,16 @@ struct Knob: View {
                 Circle()
                     .stroke(Color.gray, lineWidth: 5)
                     .frame(width: 70, alignment: .center)
-                    .gesture( DragGesture(minimumDistance: 0)
-                                .onChanged({ value  in
-                                    angle = Angle.degrees(Double(value.location.y))
-                                })
-                    )
+//                    .gesture( DragGesture(minimumDistance: 0)
+//                                .onChanged({ value  in
+//                                    angle = Angle.degrees(Double(value.location.y))
+//                                })
+//                    )
                 
                 // MARK: - Dash line within Circle
                 
                 Rectangle()
-                    .fill(Color.gray)
+                    .fill(Color.orange)
                     .cornerRadius(5.0)
                     .frame(
                         width: 60/3,
@@ -37,7 +37,7 @@ struct Knob: View {
                         alignment: .center
                     )
                     .offset(x: -60 * 0.25)
-                    .rotationEffect(angle)
+                    .rotationEffect(.degrees(-60))
             }
             .frame(width: 60, height: 60)
             .padding()
