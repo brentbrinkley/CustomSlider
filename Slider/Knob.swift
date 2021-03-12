@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct Knob: View {
-    @State var angle = Angle(radians: -1.1)
+    @State var angle = Angle(radians: 0)
+    let color: Color
     
     var body: some View {
         
@@ -29,7 +30,7 @@ struct Knob: View {
                 // MARK: - Dash line within Circle
                 
                 Rectangle()
-                    .fill(Color.orange)
+                    .fill(color)
                     .cornerRadius(5.0)
                     .frame(
                         width: 60/3,
@@ -37,7 +38,7 @@ struct Knob: View {
                         alignment: .center
                     )
                     .offset(x: -60 * 0.25)
-                    .rotationEffect(.degrees(-60))
+                    .rotationEffect(.degrees(180))
             }
             .frame(width: 60, height: 60)
             .padding()
@@ -47,6 +48,6 @@ struct Knob: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        Knob()
+        Knob(color: Color.red)
     }
 }

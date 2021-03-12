@@ -14,10 +14,9 @@ struct ContentView: View {
     var body: some View {
         GeometryReader{ geo in
             VStack {
-                Text(title)
-                    .foregroundColor(.gray)
+               
                 ZStack {
-                  CompleteKnob()
+                    FKKnob(color: Color.orange)
                 }
             }
             .frame(width:geo.frame(in: .local).width, height: geo.frame(in: .local).height)

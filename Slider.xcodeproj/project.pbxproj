@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		61023C6325F5464F00995868 /* CompleteKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61023C6225F5464F00995868 /* CompleteKnob.swift */; };
+		61023C6325F5464F00995868 /* FKKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61023C6225F5464F00995868 /* FKKnob.swift */; };
+		619B965C25F6A86E00765472 /* FKSliderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619B965B25F6A86E00765472 /* FKSliderTest.swift */; };
 		61B9FDD025F3F9FB00DC2E50 /* SliderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9FDCF25F3F9FB00DC2E50 /* SliderApp.swift */; };
 		61B9FDD225F3F9FB00DC2E50 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9FDD125F3F9FB00DC2E50 /* ContentView.swift */; };
 		61B9FDD425F3FA0100DC2E50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61B9FDD325F3FA0100DC2E50 /* Assets.xcassets */; };
@@ -16,7 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		61023C6225F5464F00995868 /* CompleteKnob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteKnob.swift; sourceTree = "<group>"; };
+		61023C6225F5464F00995868 /* FKKnob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FKKnob.swift; sourceTree = "<group>"; };
+		619B965B25F6A86E00765472 /* FKSliderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FKSliderTest.swift; sourceTree = "<group>"; };
 		61B9FDCC25F3F9FB00DC2E50 /* Slider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Slider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B9FDCF25F3F9FB00DC2E50 /* SliderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderApp.swift; sourceTree = "<group>"; };
 		61B9FDD125F3F9FB00DC2E50 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,7 +61,8 @@
 				61B9FDCF25F3F9FB00DC2E50 /* SliderApp.swift */,
 				61B9FDD125F3F9FB00DC2E50 /* ContentView.swift */,
 				61B9FDDF25F3FA2600DC2E50 /* Knob.swift */,
-				61023C6225F5464F00995868 /* CompleteKnob.swift */,
+				61023C6225F5464F00995868 /* FKKnob.swift */,
+				619B965B25F6A86E00765472 /* FKSliderTest.swift */,
 				61B9FDD325F3FA0100DC2E50 /* Assets.xcassets */,
 				61B9FDD825F3FA0100DC2E50 /* Info.plist */,
 				61B9FDD525F3FA0100DC2E50 /* Preview Content */,
@@ -144,8 +147,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61023C6325F5464F00995868 /* CompleteKnob.swift in Sources */,
+				61023C6325F5464F00995868 /* FKKnob.swift in Sources */,
 				61B9FDD225F3F9FB00DC2E50 /* ContentView.swift in Sources */,
+				619B965C25F6A86E00765472 /* FKSliderTest.swift in Sources */,
 				61B9FDD025F3F9FB00DC2E50 /* SliderApp.swift in Sources */,
 				61B9FDE025F3FA2600DC2E50 /* Knob.swift in Sources */,
 			);
