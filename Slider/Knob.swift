@@ -21,11 +21,6 @@ struct Knob: View {
                 Circle()
                     .stroke(Color.gray, lineWidth: 5)
                     .frame(width: 70, alignment: .center)
-//                    .gesture( DragGesture(minimumDistance: 0)
-//                                .onChanged({ value  in
-//                                    angle = Angle.degrees(Double(value.location.y))
-//                                })
-//                    )
                 
                 // MARK: - Dash line within Circle
                 
