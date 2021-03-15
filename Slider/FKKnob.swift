@@ -1,6 +1,5 @@
 //
-//  DashedCircle.swift
-//  Slider
+//  FKKnob.swift
 //
 //  Created by Brent Brinkley on 3/7/21.
 //
