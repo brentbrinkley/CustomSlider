@@ -13,24 +13,25 @@ struct FKKnob: View {
     
     let touchAmt: CGFloat = 130
     
+    let fullCirc: Float = 360
+    
     @State private var baseValue: CGFloat = 0.0
     
     @State private var startDragValue = -1.0
     
     // MARK: - Slider Controls
+    
     @Binding var value: AUValue
     
     var bounds: ClosedRange<CGFloat>
     
     var body: some View {
         
-        
-        
-        // MARK: - Knob with dashline
+        // MARK: - UI Knob with dashline
         
         Knob(color: .orange)
             .rotationEffect(
-                .degrees(max(0, Double(360   * (value / Float(rngOffset(range: bounds))) - (360 * Float(bounds.lowerBound / rngOffset(range: bounds))))))
+                .degrees(max(0, initialCircleState()))
             )
             .gesture(DragGesture(minimumDistance: 0)
                         .onEnded({ _ in
@@ -51,14 +52,10 @@ struct FKKnob: View {
                             
                             // Adjusts the value by baseValue and rangeOffset
                             value = Float(baseValue * rngOffset(range: bounds) + bounds.lowerBound)
-                            
-                            print(360   * (value / Float(rngOffset(range: bounds))))
                         })
-        
-        
     }
     
-   // MARK: - Start functions
+   // MARK: - functional programming to the rescue
     
     // subtract where touch initially begins to current touch location
     func touchDifference(_ drag: DragGesture.Value) -> CGFloat {
@@ -82,12 +79,19 @@ struct FKKnob: View {
         return CGFloat(newVal < 0 ? 0 : newVal > Double(touchAmt) ? Double(touchAmt) : newVal)
     }
     
+    // gets the offset amounts for different ranges
     func rngOffset(range: ClosedRange<CGFloat>) -> CGFloat {
         return range.upperBound - range.lowerBound
     }
     
-    func offSetCirc() {
-        
+    // corrects offset amount created by circle rotation by changing ranges
+    func circOffset() -> Float {
+         return fullCirc * Float(bounds.lowerBound / rngOffset(range: bounds))
+    }
+    
+    // puts our offsets togther to correct the circles initial positioning
+    func initialCircleState() -> Double {
+        return Double(fullCirc  * (value / Float(rngOffset(range: bounds))) - circOffset())
     }
 }
 
