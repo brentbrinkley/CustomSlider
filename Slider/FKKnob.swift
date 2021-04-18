@@ -16,6 +16,8 @@ struct FKKnob: View {
     
     let fullCirc: Float = 360
     
+    let fullCircOffst: Float =  360 * 0.9
+    
     @State private var baseValue: CGFloat = 0.0
     
     @State private var startDragValue = -1.0
@@ -57,7 +59,9 @@ struct FKKnob: View {
                                 
                                 print(CGFloat(value) / rngOffset(range: bounds) - bounds.lowerBound / rngOffset(range: bounds))
                         })
+//            GrayCircle(bounds: bounds)
             OrangeCircle(baseValue: $value, bounds: bounds)
+           
         }
         .rotationEffect(.degrees(90))
     }
@@ -93,7 +97,7 @@ struct FKKnob: View {
     
     // corrects offset amount created by circle rotation by changing ranges
     func circOffset() -> Float {
-         return fullCirc * Float(bounds.lowerBound / rngOffset(range: bounds))
+        return fullCirc * Float(bounds.lowerBound / rngOffset(range: bounds))
     }
     
     // puts our offsets togther to correct the circles initial positioning
