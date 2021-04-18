@@ -29,30 +29,36 @@ struct FKKnob: View {
         
         // MARK: - UI Knob with dashline
         
-        Knob(color: .orange)
-            .rotationEffect(
-                .degrees(max(0, initialCircleState()))
-            )
-            .gesture(DragGesture(minimumDistance: 0)
-                        .onEnded({ _ in
-                            startDragValue = -1.0
+        ZStack {
+            Knob(color: .orange)
+                .rotationEffect(
+                    .degrees(max(0, initialCircleState()))
+                )
+                .gesture(DragGesture(minimumDistance: 0)
+                            .onEnded({ _ in
+                                startDragValue = -1.0
+                            })
+                            
+                            .onChanged { dragValue in
+                                let touchDifferential =  touchDifference(dragValue)
+                               
+                                setInitialDragVal()
+                                
+                                let computedTouch = computeTouch(touchDifferential)
+                               
+                                baseValue = getBaseVal(computedTouch)
+                                
+                                // Normalize base value to range between 0.0 and 1.0 to match our trim values
+                                baseValue = baseValue / touchAmt
+                                
+                                // Adjusts the value by baseValue and rangeOffset
+                                value = Float(baseValue * rngOffset(range: bounds) + bounds.lowerBound)
+                                
+                                print(CGFloat(value) / rngOffset(range: bounds) - bounds.lowerBound / rngOffset(range: bounds))
                         })
-                        
-                        .onChanged { dragValue in
-                            let touchDifferential =  touchDifference(dragValue)
-                           
-                            setInitialDragVal()
-                            
-                            let computedTouch = computeTouch(touchDifferential)
-                           
-                            baseValue = getBaseVal(computedTouch)
-                            
-                            // Normalize base value to range between 0.0 and 1.0 to match our trim values
-                            baseValue = baseValue / touchAmt
-                            
-                            // Adjusts the value by baseValue and rangeOffset
-                            value = Float(baseValue * rngOffset(range: bounds) + bounds.lowerBound)
-                        })
+            OrangeCircle(baseValue: $value, bounds: bounds)
+        }
+        .rotationEffect(.degrees(90))
     }
     
    // MARK: - functional programming to the rescue

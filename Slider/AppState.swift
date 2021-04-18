@@ -8,5 +8,5 @@
 import Foundation
 
 class AppState: ObservableObject {
-    @Published var numVal: Float = 2
+    @Published var numVal: Float = 0
 }
