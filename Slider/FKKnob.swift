@@ -1,83 +1,98 @@
 //
 //  FKKnob.swift
+//  Slider
 //
-//  Created by Brent Brinkley on 3/7/21.
+//  Created by Brent Brinkley on 4/16/21.
 //
 
 import SwiftUI
+import AVKit
 
 struct FKKnob: View {
-    // Set the color for outer ring and inner dash
-    let color: Color
+    // MARK: - Touch Controls
     
-    // Minimum appearance value:
-    let circleMin: CGFloat = 0.0
+    let touchAmt: CGFloat = 130
     
-    // Maximum appearance value
-    let circleMax: CGFloat = 0.9
+    @State private var baseValue: CGFloat = 0.0
     
-    // Because our circle is missing a chunk of degrees we have to account
-    // for this adjustment
-    let circOffsetAmnt: CGFloat = 1 / 0.09
+    @State private var startDragValue = -1.0
     
-    // Offset needed to allign knob properly
-    let knobOffset: Angle = .degrees(110)
+    // MARK: - Slider Controls
+    @Binding var value: AUValue
     
-    // calculate the our circle's mid point
-    var cirMidPoint: CGFloat {
-        0.4 * circOffsetAmnt
-    }
-    
-    // User modfiable control value
-    @State var value: CGFloat = 0.0
+    var bounds: ClosedRange<CGFloat>
     
     var body: some View {
         
-        VStack {
-            ZStack {
-                
-                // MARK: - Knob with dashline
-                
-                Knob(color: color)
-                    .rotationEffect(
-                        // Currently controlled by slider
-                        .degrees(max(0, Double(360 * value )))
-                    )
-                    .gesture(DragGesture(minimumDistance: 0)
-                                .onChanged({ value  in
-                                    
-                                    // Need help here setting amount based on x and y touch drag
-                                    
-                                }))
-                
-                // MARK: - Greyed Out Ring
-                
-                Circle()
-                    .trim(from: circleMin, to: circleMax)
-                    .stroke(Color.gray ,style: StrokeStyle(lineWidth: 6, lineCap: .round, dash: [0.5,8], dashPhase: 20))
-                    .frame(width: 100, height: 100)
-                
-                // MARK: - Colored ring inidicating change
-                
-                Circle()
-                    .trim(from: circleMin, to: value)
-                    .stroke(color ,style: StrokeStyle(lineWidth: 6, lineCap: .round, dash: [0.5,8], dashPhase: 20))
-                    .frame(width: 100, height: 100)
-                
-            }
-            .rotationEffect(knobOffset)
-            
-            Text("\(value * circOffsetAmnt, specifier: "%.0f")")
-            
-            Slider(value: $value, in: circleMin...circleMax)
-                .frame(width: 300)
-                .accentColor(.orange)
+        
+        
+        // MARK: - Knob with dashline
+        
+        Knob(color: .orange)
+            .rotationEffect(
+                .degrees(max(0, Double(360   * (value / Float(rngOffset(range: bounds))) - (360 * Float(bounds.lowerBound / rngOffset(range: bounds))))))
+            )
+            .gesture(DragGesture(minimumDistance: 0)
+                        .onEnded({ _ in
+                            startDragValue = -1.0
+                        })
+                        
+                        .onChanged { dragValue in
+                            let touchDifferential =  touchDifference(dragValue)
+                           
+                            setInitialDragVal()
+                            
+                            let computedTouch = computeTouch(touchDifferential)
+                           
+                            baseValue = getBaseVal(computedTouch)
+                            
+                            // Normalize base value to range between 0.0 and 1.0 to match our trim values
+                            baseValue = baseValue / touchAmt
+                            
+                            // Adjusts the value by baseValue and rangeOffset
+                            value = Float(baseValue * rngOffset(range: bounds) + bounds.lowerBound)
+                            
+                            print(360   * (value / Float(rngOffset(range: bounds))))
+                        })
+        
+        
+    }
+    
+   // MARK: - Start functions
+    
+    // subtract where touch initially begins to current touch location
+    func touchDifference(_ drag: DragGesture.Value) -> CGFloat {
+        return drag.startLocation.x - drag.location.x
+    }
+    
+    // if value equals -1.0 set startDragValue to baseValue
+    func setInitialDragVal() {
+        if startDragValue == -1.0 {
+            startDragValue = Double(baseValue)
         }
+    }
+    
+    // add -1.0 or baseValue to touchDifferential
+    func computeTouch(_ diff: CGFloat) -> Double {
+        return startDragValue + Double(diff)
+    }
+    
+    // limit touch return data to between 0 and touchAmount
+    func getBaseVal(_ newVal: Double) -> CGFloat {
+        return CGFloat(newVal < 0 ? 0 : newVal > Double(touchAmt) ? Double(touchAmt) : newVal)
+    }
+    
+    func rngOffset(range: ClosedRange<CGFloat>) -> CGFloat {
+        return range.upperBound - range.lowerBound
+    }
+    
+    func offSetCirc() {
+        
     }
 }
 
-struct DashedCircle_Previews: PreviewProvider {
-    static var previews: some View {
-        FKKnob(color: Color.orange)
-    }
-}
+//struct FKKnob_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FKKnob(label: "Volume", input: 10, specifier: "%.1f", outputValue: 0.0).environmentObject(AppState())
+//    }
+//}

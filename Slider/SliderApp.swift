@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct SliderApp: App {
+    @StateObject var state = AppState()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(state)
         }
     }
 }
