@@ -17,11 +17,7 @@ struct ContentView: View {
         GeometryReader{ geo in
             VStack {
                 Text("\(appState.numVal)")
-                FKKnob(value: $appState.numVal, bounds: 0...10)
-                Slider(value: $appState.numVal, in: 2...10)
-//                OldKnob(label: "Volume", color: Color.orange, input: 20).padding()
-//
-//                OldKnobCenter(label: "Pitch", color: Color.green, rangeValue: 12).padding()
+                FKKnob(value: $appState.numVal, bounds: -10...10)
             }
             .frame(width:geo.frame(in: .local).width, height: geo.frame(in: .local).height)
         }.frame(height: 150)
