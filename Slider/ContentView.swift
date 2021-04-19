@@ -15,9 +15,13 @@ struct ContentView: View {
     
     var body: some View {
         GeometryReader{ geo in
-            VStack {
-                Text("\(appState.numVal)")
-                FKKnob(value: $appState.numVal, bounds: -10...10)
+            HStack {
+                Spacer()
+//                Text("\(appState.numVal)")
+                FKKnob(value: $appState.numVal, bounds: -40...40)
+                Spacer()
+                FKKnob(value: $appState.numVal, bounds: 0...40)
+                Spacer()
             }
             .frame(width:geo.frame(in: .local).width, height: geo.frame(in: .local).height)
         }.frame(height: 150)

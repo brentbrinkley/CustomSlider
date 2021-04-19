@@ -16,6 +16,7 @@
 		61B9FDD425F3FA0100DC2E50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61B9FDD325F3FA0100DC2E50 /* Assets.xcassets */; };
 		61B9FDD725F3FA0100DC2E50 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61B9FDD625F3FA0100DC2E50 /* Preview Assets.xcassets */; };
 		61B9FDE025F3FA2600DC2E50 /* Knob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9FDDF25F3FA2600DC2E50 /* Knob.swift */; };
+		61BFF414262D01D900F62427 /* TestCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BFF413262D01D900F62427 /* TestCircle.swift */; };
 		61D88902262A16F400C3CE91 /* FKKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D88901262A16F400C3CE91 /* FKKnob.swift */; };
 		61D88905262A797C00C3CE91 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D88904262A797C00C3CE91 /* AppState.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,7 @@
 		61B9FDD625F3FA0100DC2E50 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		61B9FDD825F3FA0100DC2E50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61B9FDDF25F3FA2600DC2E50 /* Knob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Knob.swift; sourceTree = "<group>"; };
+		61BFF413262D01D900F62427 /* TestCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCircle.swift; sourceTree = "<group>"; };
 		61D88901262A16F400C3CE91 /* FKKnob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FKKnob.swift; sourceTree = "<group>"; };
 		61D88904262A797C00C3CE91 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +84,7 @@
 				61D88901262A16F400C3CE91 /* FKKnob.swift */,
 				615710C9262AB35200F42A9D /* OrangeCircle.swift */,
 				615710C5262AB2E000F42A9D /* GrayCircle.swift */,
+				61BFF413262D01D900F62427 /* TestCircle.swift */,
 				61B9FDD325F3FA0100DC2E50 /* Assets.xcassets */,
 				61B9FDD825F3FA0100DC2E50 /* Info.plist */,
 				61B9FDD525F3FA0100DC2E50 /* Preview Content */,
@@ -168,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				615710C6262AB2E000F42A9D /* GrayCircle.swift in Sources */,
+				61BFF414262D01D900F62427 /* TestCircle.swift in Sources */,
 				61D88902262A16F400C3CE91 /* FKKnob.swift in Sources */,
 				61023C6325F5464F00995868 /* OldKnob.swift in Sources */,
 				61B9FDD225F3F9FB00DC2E50 /* ContentView.swift in Sources */,

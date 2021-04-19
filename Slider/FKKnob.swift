@@ -48,28 +48,30 @@ struct FKKnob: View {
                                 setInitialDragVal()
                                 
                                 let computedTouch = computeTouch(touchDifferential)
-                               
+                                
+                                print(computedTouch)
+                                
                                 baseValue = getBaseVal(computedTouch)
                                 
                                 // Normalize base value to range between 0.0 and 1.0 to match our trim values
-                                baseValue = baseValue / touchAmt
+                                let normalizeVal = baseValue / touchAmt
                                 
                                 // Adjusts the value by baseValue and rangeOffset
-                                value = Float(baseValue * rngOffset(range: bounds) + bounds.lowerBound)
-                                
-                                print(CGFloat(value) / rngOffset(range: bounds) - bounds.lowerBound / rngOffset(range: bounds))
+                                value = Float(normalizeVal * rngOffset(range: bounds) + bounds.lowerBound)
                         })
-//            GrayCircle(bounds: bounds)
+            GrayCircle(bounds: bounds)
             OrangeCircle(baseValue: $value, bounds: bounds)
            
         }
-        .rotationEffect(.degrees(90))
+        .rotationEffect(bounds.lowerBound < 0 ? .degrees(90) : .degrees(107))
     }
     
    // MARK: - functional programming to the rescue
     
     // subtract where touch initially begins to current touch location
     func touchDifference(_ drag: DragGesture.Value) -> CGFloat {
+        print("startX: \(drag.startLocation.x)")
+        print("dragX: \(drag.location.x)")
         return drag.startLocation.x - drag.location.x
     }
     
@@ -78,10 +80,12 @@ struct FKKnob: View {
         if startDragValue == -1.0 {
             startDragValue = Double(baseValue)
         }
+        print("StartDragVal: \(startDragValue)")
     }
     
     // add -1.0 or baseValue to touchDifferential
     func computeTouch(_ diff: CGFloat) -> Double {
+        print("Diff: \(diff)")
         return startDragValue + Double(diff)
     }
     
@@ -102,7 +106,7 @@ struct FKKnob: View {
     
     // puts our offsets togther to correct the circles initial positioning
     func initialCircleState() -> Double {
-        return Double(fullCirc  * (value / Float(rngOffset(range: bounds))) - circOffset())
+        return Double(fullCircOffst  * (value / Float(rngOffset(range: bounds))) - circOffset())
     }
 }
 
